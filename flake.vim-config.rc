@@ -52,4 +52,6 @@ lspconfig.volar.setup {
   init_options = { vue = { hybridMode = false } },
 }
 
+lspconfig.nil_ls.setup {}
+
 EOF

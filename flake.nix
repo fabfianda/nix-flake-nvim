@@ -19,6 +19,7 @@
             customRC = builtins.readFile ./flake.vim-config.rc;
             packages.myVimPackage = with pkgs.vimPlugins; {
               start = [
+	        vim-nix           # File type and system highlighting.
                 vim-fugitive      # Git integration.
                 gruvbox           # Color scheme.
                 ansible-vim       # Ansible syntax support.
@@ -28,9 +29,9 @@
                 nvim-web-devicons # File type icons.
                 avante-nvim       # AI-based suggestions.
                 img-clip-nvim     # Image clipboard support.
-		nvim-lspconfig    # LSP configuration
-		nvim-cmp          # LSP auto-completion 
-		cmp-nvim-lsp      # LSP source for nvim-cmp
+		nvim-lspconfig    # LSP configuration.
+		nvim-cmp          # LSP auto-completion.
+		cmp-nvim-lsp      # LSP source for nvim-cmp.
               ];
               opt = [ ];
             };
@@ -42,6 +43,7 @@
             nvim
             pkgs.ripgrep
             pkgs.nodejs
+            pkgs.nil                                 # LSP for Ni.x
             pkgs.nodePackages.typescript             # TypeScript compiler.
             pkgs.nodePackages.typescript-language-server  # LSP for TypeScript.
             pkgs.vue-language-server                  # Volar (Vue language server) for Vue/TS support.
