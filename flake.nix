@@ -19,7 +19,7 @@
 
         nvim = pkgs.neovim.override {
           configure = {
-            customRC = builtins.readFile ./flake.vim-config.rc;
+            customRC = import ./config { inherit pkgs; };
             packages.myVimPackage = with pkgs.vimPlugins; {
               start = [
 	        vim-nix           # File type and system highlighting.
