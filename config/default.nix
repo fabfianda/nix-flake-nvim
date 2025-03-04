@@ -49,6 +49,10 @@ local lspconfig = require("lspconfig")
 -- Volar (Vue3)
 lspconfig.volar.setup {  
     init_options = {
+       typescript = {
+          -- replace with your global TypeScript library path
+         tsdk = '${pkgs.nodePackages.typescript}/lib/node_modules/typescript/lib'
+       },
        vue = {
          hybridMode = false,
        }
