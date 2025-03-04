@@ -48,15 +48,12 @@ local lspconfig = require("lspconfig")
 lspconfig.volar.setup {  
     -- add filetypes for typescript, javascript and vue
     filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
-    init_options = {                  
-      tsserver = {
-        path = "${pkgs.nodePackages.typescript}/lib/node_modules/typescript/lib",
-      },
-      vue = {                         
-        -- disable hybrid mode        
-        hybridMode = true,           
-      },                              
-    },                                
+    init_options = {
+       typescript = {
+          -- replace with your global TypeScript library path
+         tsdk = '${pkgs.nodePackages.typescript}/lib/node_modules/typescript/lib'
+    }
+   },
   }                                   
 -- you must remove ts_ls setup
 
