@@ -28,6 +28,7 @@ nnoremap <leader>P  "+P
 " --- LUA based config  --- "
 lua << EOF
 
+-- Avante 
 require('avante').setup({
   provider = "openai",  -- or your chosen AI provider
   openai = {
@@ -45,19 +46,70 @@ require('avante').setup({
 
 local lspconfig = require("lspconfig")
 
+-- Volar (Vue3)
 lspconfig.volar.setup {  
-    -- add filetypes for typescript, javascript and vue
-    filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
     init_options = {
-       typescript = {
-          -- replace with your global TypeScript library path
-         tsdk = '${pkgs.nodePackages.typescript}/lib/node_modules/typescript/lib'
-    }
+       vue = {
+         hybridMode = false,
+       }
    },
-  }                                   
--- you must remove ts_ls setup
+   settings = {
+      typescript = {
+        inlayHints = {
+          enumMemberValues = {
+            enabled = true,
+          },
+          functionLikeReturnTypes = {
+            enabled = true,
+          },
+          propertyDeclarationTypes = {
+            enabled = true,
+          },
+          parameterTypes = {
+            enabled = true,
+            suppressWhenArgumentMatchesName = true,
+          },
+          variableTypes = {
+            enabled = true,
+          },
+        },
+      },
+   },
+}                                   
 
-lspconfig.nil_ls.setup {}
+-- TypeScript
+lspconfig.ts_ls.setup {
+    init_options = {
+      plugins = {
+        {
+          name = '@vue/typescript-plugin',
+          location = '${pkgs.vue-language-server}/lib/node_modules/@vue/language-server',
+          languages = { 'vue' },
+        },
+      },
+    },
+    settings = {
+      typescript = {
+        tsserver = {
+          useSyntaxServer = false,
+        },
+        inlayHints = {
+          includeInlayParameterNameHints = 'all',
+          includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+          includeInlayFunctionParameterTypeHints = true,
+          includeInlayVariableTypeHints = true,
+          includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+          includeInlayPropertyDeclarationTypeHints = true,
+          includeInlayFunctionLikeReturnTypeHints = true,
+          includeInlayEnumMemberValueHints = true,
+        },
+      },
+    },
+}
+
+-- Nil 
+lspconfig.nil_ls.setup {
+}
 
 EOF
 
