@@ -39,6 +39,7 @@
                 nvim-treesitter-parsers.javascript   # TS (js) 
                 # color schemes
                 gruvbox  
+                gruvbox-baby
                 sonokai
               ];
               opt = [ ];
