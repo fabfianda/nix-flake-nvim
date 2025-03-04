@@ -4,7 +4,7 @@ let rc = ''
 
 set noswapfile
 " --- Auto color scheme --- "
-autocmd VimEnter * colorscheme gruvbox
+autocmd VimEnter * colorscheme sonokai
 
 " --- Mappings --- "
 let mapleader = "<SPACE>"
@@ -28,8 +28,51 @@ nnoremap <leader>P  "+P
 " --- LUA based config  --- "
 lua << EOF
 
+-- Tree-sitter
+require("nvim-treesitter.configs").setup({
+  -- List of parsers
+  ensure_installed = {
+      "vue",
+      "javascript"
+  },
+  -- Install parsers synchronously (only applied to `ensure_installed`)
+  sync_install = false,
+  
+  -- Automatically install missing parsers when entering buffer
+  auto_install = false,
+  
+  -- List of parsers to ignore installing (for "all")
+  ignore_install = {},
+  
+  ---- If you need to change the installation directory of the parsers (see -> Advanced Setup)
+  parser_install_dir = "/tmp",
+  
+  highlight = {
+  	-- `false` will disable the whole extension
+  	enable = true,
+  
+  	-- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
+  	-- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
+  	-- the name of the parser)
+  	-- list of language that will be disabled
+  	disable = {},
+  
+  	-- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+  	-- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+  	-- Using this option may slow down your editor, and you may see some duplicate highlights.
+  	-- Instead of true it can also be a list of languages
+  	additional_vim_regex_highlighting = true,
+  },
+  indent = {
+	enable = true,
+  },
+
+})
+
+
 -- Avante 
-require('avante').setup({
+local avante = require("avante")
+avante.setup({
   provider = "openai",  -- or your chosen AI provider
   openai = {
     endpoint = "https://api.openai.com/v1",
@@ -44,7 +87,9 @@ require('avante').setup({
   }
 })
 
+-- LSP config
 local lspconfig = require("lspconfig")
+
 
 -- Volar (Vue3)
 lspconfig.volar.setup {  

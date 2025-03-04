@@ -25,7 +25,6 @@
               start = [
 	        vim-nix           # File type and system highlighting.
                 vim-fugitive      # Git integration.
-                gruvbox           # Color scheme.
                 ansible-vim       # Ansible syntax support.
                 chadtree          # File explorer.
                 telescope-nvim    # Fuzzy finder.
@@ -36,6 +35,11 @@
 		nvim-lspconfig    # LSP configuration.
 		nvim-cmp          # LSP auto-completion.
 		cmp-nvim-lsp      # LSP source for nvim-cmp.
+                nvim-treesitter   # Tree-sitter
+                nvim-treesitter-parsers.javascript   # TS (js) 
+                # color schemes
+                gruvbox  
+                sonokai
               ];
               opt = [ ];
             };
@@ -53,6 +57,7 @@
             pkgs.vue-language-server                  # Volar (Vue language server) for Vue/TS support.
           ];
           shellHook = ''
+            export PIPPO="v1.6"
             alias vi="nvim"
           '';
         };
