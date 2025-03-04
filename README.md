@@ -1,7 +1,7 @@
 # nix-flake-nvim
 Nix flake to run a complete web dev ready Neovim
 
-run as (change arch accordingly):
+launch it by running:
 ```
-nix develop github:fabfianda/nix-flake-nvim#devShell.x86_64-linux
+nix develop github:fabfianda/nix-flake-nvim
 ```
