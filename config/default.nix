@@ -54,7 +54,7 @@ lspconfig.volar.setup {
       },
       vue = {                         
         -- disable hybrid mode        
-        hybridMode = false,           
+        hybridMode = true,           
       },                              
     },                                
   }                                   
