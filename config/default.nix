@@ -273,33 +273,11 @@ none_ls.setup({
     code_actions.eslint,
     code_actions.shellcheck,
   },
-  -- Automatically format on save
-  on_attach = function(client, bufnr)
-    if client.supports_method("textDocument/formatting") then
-      local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-      
-      vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        group = augroup,
-        buffer = bufnr,
-        callback = function()
-          vim.lsp.buf.format({ 
-            bufnr = bufnr,
-            filter = function(client)
-              return client.name == "null-ls"
-            end
-          })
-        end,
-      })
-    end
-  end,
 })
 
 -- ------------------- --
 -- Keymaps for linting and formatting
-vim.api.nvim_set_keymap("n", "<leader>xx", "<cmd>TroubleToggle<cr>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<SPACE><SPACE>", "<cmd>lua vim.lsp.buf.format({ async = true })<cr>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<SPACE><SPACE>", "<cmd>lua vim.lsp.buf.format({ async = false })<cr>", { noremap = true, silent = true })
 
 
 EOF
