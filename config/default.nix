@@ -37,6 +37,7 @@ require("lualine").setup()
 require("nvim-treesitter.configs").setup({
   -- List of parsers
   ensure_installed = {
+      "query",
       "javascript",
       "typescript",
       "comment",

@@ -50,6 +50,7 @@
 
                 # Tree-sitter
                 nvim-treesitter   
+                nvim-treesitter-parsers.query   
                 nvim-treesitter-parsers.javascript   
                 nvim-treesitter-parsers.typescript   
                 nvim-treesitter-parsers.comment   
