@@ -36,8 +36,12 @@
 		nvim-cmp          # LSP auto-completion.
 		cmp-nvim-lsp      # LSP source for nvim-cmp.
                 nvim-treesitter   # Tree-sitter
-                nvim-treesitter-parsers.javascript   # TS (js) 
-                nvim-treesitter-parsers.vue   # TS (js) 
+                nvim-treesitter-parsers.javascript   
+                nvim-treesitter-parsers.typescript   
+                nvim-treesitter-parsers.comment   
+                nvim-treesitter-parsers.css   
+                nvim-treesitter-parsers.html   
+                nvim-treesitter-parsers.vue   
                 # color schemes
                 gruvbox  
                 gruvbox-baby

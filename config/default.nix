@@ -32,8 +32,12 @@ lua << EOF
 require("nvim-treesitter.configs").setup({
   -- List of parsers
   ensure_installed = {
+      "javascript",
+      "typescript",
+      "comment",
+      "html",
+      "css",
       "vue",
-      "javascript"
   },
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = false,
