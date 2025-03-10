@@ -99,7 +99,7 @@ avante.setup({
 
 -- ------------------- --
 -- nvim-cmp
-local cmp = require'cmp'
+local cmp = require("cmp")
 
 cmp.setup({
   snippet = {
@@ -166,7 +166,7 @@ cmp.setup.cmdline(':', {
 -- ------------------- --
 -- LSP config
 local lspconfig = require("lspconfig")
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 -- ------------------- --
 -- Volar (Vue3)
@@ -245,10 +245,7 @@ lspconfig.nil_ls.setup {
 
 -- ------------------- --
 -- None-ls 
-local none_ls_status_ok, none_ls = pcall(require, "null-ls")
-if not none_ls_status_ok then
-  return
-end
+local none_ls = require("null-ls")
 
 -- Import the sources module
 local formatting = none_ls.builtins.formatting
@@ -277,7 +274,14 @@ none_ls.setup({
 
 -- ------------------- --
 -- Keymaps for linting and formatting
-vim.api.nvim_set_keymap("n", "<SPACE><SPACE>", "<cmd>lua vim.lsp.buf.format({ async = false })<cr>", { noremap = true, silent = true })
+
+function formatAndBlockCursor ()
+  local curpos = vim.api.nvim_win_get_cursor(0)  -- Save cursor position
+  vim.lsp.buf.format()                           -- Format buffer
+  vim.api.nvim_win_set_cursor(0, curpos)         -- Restore cursor position
+end  
+
+vim.keymap.set("n", "<SPACE><SPACE>", formatAndBlockCursor, { noremap = true, silent = true })
 
 
 EOF
