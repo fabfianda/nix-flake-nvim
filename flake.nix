@@ -23,6 +23,7 @@
             customRC = import ./config { inherit pkgs; };
             packages.myVimPackage = with pkgs.vimPlugins; {
               start = [
+                # Misc plugins 
 	        vim-nix           # File type and system highlighting.
                 vim-fugitive      # Git integration.
                 ansible-vim       # Ansible syntax support.
@@ -32,10 +33,18 @@
                 nvim-web-devicons # File type icons.
                 avante-nvim       # AI-based suggestions.
                 img-clip-nvim     # Image clipboard support.
-		nvim-lspconfig    # LSP configuration.
-		nvim-cmp          # LSP auto-completion.
-		cmp-nvim-lsp      # LSP source for nvim-cmp.
                 lualine-nvim      # Minimal status line
+		nvim-lspconfig    # LSP configuration.
+
+                # Auto-completion
+		cmp-nvim-lsp    
+		cmp-buffer
+		cmp-path
+		cmp-cmdline
+		nvim-cmp         
+                cmp-vsnip
+                vim-vsnip
+
                 # Tree-sitter
                 nvim-treesitter   
                 nvim-treesitter-parsers.javascript   
@@ -65,7 +74,7 @@
             pkgs.vue-language-server                  # Volar (Vue language server) for Vue/TS support.
           ];
           shellHook = ''
-            export PIPPO="v1.6"
+            export PIPPO="v1.82"
             alias vi="nvim"
           '';
         };

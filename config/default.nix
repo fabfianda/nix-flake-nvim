@@ -28,9 +28,11 @@ nnoremap <leader>P  "+P
 " --- LUA based config  --- "
 lua << EOF
 
+-- ------------------- --
 -- Lualine
 require("lualine").setup()
 
+-- ------------------- --
 -- Tree-sitter
 require("nvim-treesitter.configs").setup({
   -- List of parsers
@@ -76,7 +78,7 @@ require("nvim-treesitter.configs").setup({
 
 })
 
-
+-- ------------------- --
 -- Avante 
 local avante = require("avante")
 avante.setup({
@@ -94,12 +96,81 @@ avante.setup({
   }
 })
 
+-- ------------------- --
+-- nvim-cmp
+local cmp = require'cmp'
+
+cmp.setup({
+  snippet = {
+    -- REQUIRED - you must specify a snippet engine
+    expand = function(args)
+      vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+    end,
+  },
+  window = {
+    -- completion = cmp.config.window.bordered(),
+    -- documentation = cmp.config.window.bordered(),
+  },
+
+  -- Key mapping configuration
+  mapping = cmp.mapping.preset.insert({
+    -- Scroll documentation up/down
+    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    
+    -- Confirm selection
+    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item
+    ['<Tab>'] = cmp.mapping.confirm({ select = true }), -- Optional: Tab to confirm
+    
+    -- Navigate completion menu
+    ['<C-p>'] = cmp.mapping.select_prev_item(),
+    ['<C-n>'] = cmp.mapping.select_next_item(),
+    ['<Up>'] = cmp.mapping.select_prev_item(),
+    ['<Down>'] = cmp.mapping.select_next_item(),
+    
+    -- Toggle completion menu
+    ['<C-Space>'] = cmp.mapping.complete(),
+    
+    -- Exit completion menu
+    ['<C-e>'] = cmp.mapping.abort(),
+  }),
+
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    { name = 'vsnip' }, -- For vsnip users.
+  }, {
+    { name = 'buffer' },
+  })
+})
+
+-- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline({ '/', '?' }, {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = {
+    { name = 'buffer' }
+  }
+})
+
+-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline(':', {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({
+    { name = 'path' }
+  }, {
+    { name = 'cmdline' }
+  }),
+  matching = { disallow_symbol_nonprefix_matching = false }
+})
+
+-- ------------------- --
 -- LSP config
 local lspconfig = require("lspconfig")
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-
+-- ------------------- --
 -- Volar (Vue3)
 lspconfig.volar.setup {  
+    capabilities = capabilities,
     init_options = {
        typescript = {
           -- replace with your global TypeScript library path
@@ -133,8 +204,10 @@ lspconfig.volar.setup {
    },
 }                                   
 
+-- ------------------- --
 -- TypeScript
 lspconfig.ts_ls.setup {
+    capabilities = capabilities,
     init_options = {
       plugins = {
         {
@@ -163,9 +236,15 @@ lspconfig.ts_ls.setup {
     },
 }
 
+-- ------------------- --
 -- Nil 
 lspconfig.nil_ls.setup {
+    capabilities = capabilities,
 }
+
+-- ------------------- --
+-- Keymaps 
+-- vim.keymap.set('n','<Tab>', cmp.mapping.complete(), {silent = true, noremap = true})
 
 EOF
 
