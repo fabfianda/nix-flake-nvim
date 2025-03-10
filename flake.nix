@@ -35,7 +35,9 @@
 		nvim-lspconfig    # LSP configuration.
 		nvim-cmp          # LSP auto-completion.
 		cmp-nvim-lsp      # LSP source for nvim-cmp.
-                nvim-treesitter   # Tree-sitter
+                lualine-nvim      # Minimal status line
+                # Tree-sitter
+                nvim-treesitter   
                 nvim-treesitter-parsers.javascript   
                 nvim-treesitter-parsers.typescript   
                 nvim-treesitter-parsers.comment   

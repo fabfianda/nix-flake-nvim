@@ -28,6 +28,9 @@ nnoremap <leader>P  "+P
 " --- LUA based config  --- "
 lua << EOF
 
+-- Lualine
+require("lualine").setup()
+
 -- Tree-sitter
 require("nvim-treesitter.configs").setup({
   -- List of parsers
