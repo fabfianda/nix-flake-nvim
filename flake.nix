@@ -37,6 +37,7 @@
 		cmp-nvim-lsp      # LSP source for nvim-cmp.
                 nvim-treesitter   # Tree-sitter
                 nvim-treesitter-parsers.javascript   # TS (js) 
+                nvim-treesitter-parsers.vue   # TS (js) 
                 # color schemes
                 gruvbox  
                 gruvbox-baby
@@ -52,7 +53,7 @@
             nvim
             pkgs.ripgrep
             pkgs.nodejs
-            pkgs.nil                                 # LSP for Ni.x
+            pkgs.nil                                 # LSP for Nix
             pkgs.nodePackages.typescript             # TypeScript compiler.
             pkgs.nodePackages.typescript-language-server  # LSP for TypeScript.
             pkgs.vue-language-server                  # Volar (Vue language server) for Vue/TS support.
