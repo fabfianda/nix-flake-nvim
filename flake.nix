@@ -36,6 +36,9 @@
                 lualine-nvim      # Minimal status line
 		nvim-lspconfig    # LSP configuration.
 
+                # Linting and formatting
+                none-ls-nvim
+
                 # Auto-completion
 		cmp-nvim-lsp    
 		cmp-buffer
@@ -53,6 +56,7 @@
                 nvim-treesitter-parsers.css   
                 nvim-treesitter-parsers.html   
                 nvim-treesitter-parsers.vue   
+
                 # color schemes
                 gruvbox  
                 gruvbox-baby
@@ -72,6 +76,9 @@
             pkgs.nodePackages.typescript             # TypeScript compiler.
             pkgs.nodePackages.typescript-language-server  # LSP for TypeScript.
             pkgs.vue-language-server                  # Volar (Vue language server) for Vue/TS support.
+            # Linters and formatters
+            pkgs.nodePackages.eslint                 # JavaScript/TypeScript linter
+            pkgs.nodePackages.prettier               # Code formatter
           ];
           shellHook = ''
             export PIPPO="v1.82"

@@ -243,8 +243,63 @@ lspconfig.nil_ls.setup {
 }
 
 -- ------------------- --
--- Keymaps 
--- vim.keymap.set('n','<Tab>', cmp.mapping.complete(), {silent = true, noremap = true})
+-- None-ls 
+local none_ls_status_ok, none_ls = pcall(require, "null-ls")
+if not none_ls_status_ok then
+  return
+end
+
+-- Import the sources module
+local formatting = none_ls.builtins.formatting
+local diagnostics = none_ls.builtins.diagnostics
+local code_actions = none_ls.builtins.code_actions
+
+none_ls.setup({
+  debug = false,
+  sources = {
+    -- Formatting
+    formatting.prettier.with({
+      extra_filetypes = { "toml", "json" },
+      extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" },
+    }),
+    
+    -- Diagnostics
+    diagnostics.eslint,
+    diagnostics.shellcheck,
+    diagnostics.markdownlint,
+    
+    -- Code Actions
+    code_actions.eslint,
+    code_actions.shellcheck,
+  },
+  -- Automatically format on save
+  on_attach = function(client, bufnr)
+    if client.supports_method("textDocument/formatting") then
+      local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+      
+      vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        group = augroup,
+        buffer = bufnr,
+        callback = function()
+          vim.lsp.buf.format({ 
+            bufnr = bufnr,
+            filter = function(client)
+              return client.name == "null-ls"
+            end
+          })
+        end,
+      })
+    end
+  end,
+})
+
+-- ------------------- --
+-- Keymaps for linting and formatting
+vim.api.nvim_set_keymap("n", "<leader>xx", "<cmd>TroubleToggle<cr>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<SPACE><SPACE>", "<cmd>lua vim.lsp.buf.format({ async = true })<cr>", { noremap = true, silent = true })
+
 
 EOF
 
