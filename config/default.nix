@@ -178,7 +178,7 @@ lspconfig.volar.setup {
          tsdk = '${pkgs.nodePackages.typescript}/lib/node_modules/typescript/lib'
        },
        vue = {
-         hybridMode = false,
+         hybridMode = true,
        }
    },
    settings = {
