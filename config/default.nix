@@ -6,6 +6,7 @@ let rc = ''
 set noswapfile
 set number
 set relativenumber
+set termguicolors
 
 " --- Auto color scheme --- "
 autocmd VimEnter * colorscheme sonokai
