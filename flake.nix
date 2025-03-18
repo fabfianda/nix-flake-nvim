@@ -82,7 +82,7 @@
             pkgs.nodePackages.prettier               # Code formatter
           ];
           shellHook = ''
-            export PIPPO="v1.91"
+            export PIPPO="v1.92"
             alias vi="nvim"
           '';
         };
