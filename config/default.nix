@@ -2,7 +2,11 @@
 { pkgs }:
 let rc = ''
 
+" --- Defaults --- "
 set noswapfile
+set number
+set relativenumber
+
 " --- Auto color scheme --- "
 autocmd VimEnter * colorscheme sonokai
 
