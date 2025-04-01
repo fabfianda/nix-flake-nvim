@@ -14,6 +14,11 @@ autocmd VimEnter * colorscheme sonokai
 " --- Mappings --- "
 let mapleader = "<SPACE>"
 
+" --- Diff mappings --- "
+nnoremap <leader>dv :DiffviewOpen<CR>
+nnoremap <leader>dh :DiffviewFileHistory<CR>
+nnoremap <leader>dc :DiffviewClose<CR>
+
 nnoremap <SPACE><SPACE><SPACE> :noh <CR>
 nnoremap <SPACE>t <cmd>CHADopen<cr>
 nnoremap <SPACE>l <cmd>Telescope live_grep<cr>
@@ -257,6 +262,24 @@ none_ls.setup({
     -- Code Actions
     code_actions.eslint,
     code_actions.shellcheck,
+  },
+})
+
+-- ------------------- --
+-- Diffview configuration
+require("diffview").setup({
+  enhanced_diff_hl = true,  -- Use enhanced diff highlighting
+  view = {
+    default = {
+      layout = "diff2_horizontal",  -- Display diffs side by side
+    },
+  },
+  hooks = {
+    diff_buf_read = function()
+      -- Disable line numbers in diff view
+      vim.opt_local.number = false
+      vim.opt_local.relativenumber = false
+    end,
   },
 })
 
