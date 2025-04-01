@@ -85,24 +85,6 @@ require("nvim-treesitter.configs").setup({
 })
 
 -- ------------------- --
--- Avante 
-local avante = require("avante")
-avante.setup({
-  provider = "openai",  -- or your chosen AI provider
-  openai = {
-    endpoint = "https://api.openai.com/v1",
-    model = "gpt-4",   -- Change based on your usage
-    timeout = 30000,   -- Timeout in milliseconds
-    temperature = 0.7, -- Adjust as needed
-    max_tokens = 2048  -- Adjust based on API limits
-  },
-  behaviour = {
-    enable_suggestions = true,
-    enable_inline_suggestions = true
-  }
-})
-
--- ------------------- --
 -- nvim-cmp
 local cmp = require("cmp")
 

@@ -31,7 +31,6 @@
                 telescope-nvim    # Fuzzy finder.
                 telescope-file-browser-nvim  # File browser for Telescope.
                 nvim-web-devicons # File type icons.
-                avante-nvim       # AI-based suggestions.
                 img-clip-nvim     # Image clipboard support.
                 lualine-nvim      # Minimal status line
 		nvim-lspconfig    # LSP configuration.
