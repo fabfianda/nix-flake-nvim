@@ -2,6 +2,9 @@
 { pkgs }:
 let rc = ''
 
+" --- Leader key --- "
+let mapleader = "<SPACE>"
+
 " --- Defaults --- "
 set noswapfile
 set number
@@ -12,7 +15,6 @@ set termguicolors
 autocmd VimEnter * colorscheme sonokai
 
 " --- Mappings --- "
-let mapleader = "<SPACE>"
 
 " --- Diff mappings --- "
 nnoremap <leader>dv :DiffviewOpen<CR>
