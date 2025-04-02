@@ -57,6 +57,10 @@
                 nvim-treesitter-parsers.html   
                 nvim-treesitter-parsers.vue   
 
+                # diff tools
+                vim-diff-enhanced     # Enhanced diff algorithm
+                diffview-nvim         # Better diff viewing interface
+
                 # color schemes
                 gruvbox  
                 gruvbox-baby
@@ -70,6 +74,7 @@
         devShell = pkgs.mkShell {
           buildInputs = [
             nvim
+            pkgs.aider-chat                          # Aider AI coding assistant
             pkgs.ripgrep
             pkgs.nodejs
             pkgs.nil                                 # LSP for Nix
