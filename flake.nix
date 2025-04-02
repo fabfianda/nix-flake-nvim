@@ -2,7 +2,7 @@
   description = "A flake for fully-featured Neovim";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/master";
     flake-utils.url = "github:numtide/flake-utils";
   };
 
@@ -12,11 +12,14 @@
       flake-utils.lib.system.x86_64-darwin
     ] (system:
       let
-
+        #
         pkgs = import nixpkgs {
           inherit system;
           config = {};
         };
+
+        #
+        aider-chat-with-browser = pkgs.aider-chat.passthru.withOptional { withBrowser = true; };
 
         nvim = pkgs.neovim.override {
           configure = {
@@ -74,7 +77,7 @@
         devShell = pkgs.mkShell {
           buildInputs = [
             nvim
-            pkgs.aider-chat                          # Aider AI coding assistant
+            aider-chat-with-browser  # Aider AI coding assistant
             pkgs.ripgrep
             pkgs.nodejs
             pkgs.nil                                 # LSP for Nix
