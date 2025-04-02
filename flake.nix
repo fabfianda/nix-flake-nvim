@@ -58,8 +58,8 @@
                 nvim-treesitter-parsers.vue   
 
                 # diff tools
-                vim-diff-enhanced     # Enhanced diff algorithm
-                diffview-nvim         # Better diff viewing interface
+                vim-signify          # Enhanced diff signs in gutter
+                diffview-nvim        # Better diff viewing interface
 
                 # color schemes
                 gruvbox  
