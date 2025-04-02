@@ -11,8 +11,9 @@
   outputs = { nixpkgs, flake-utils, ... }:
   # Use flake-utils to generate outputs for specified systems.
   flake-utils.lib.eachSystem [
-      flake-utils.lib.system.x86_64-linux # Linux x86_64
+      flake-utils.lib.system.x86_64-linux  # Linux x86_64
       flake-utils.lib.system.x86_64-darwin # macOS x86_64
+      flake-utils.lib.system.aarch64-darwin # macOS Apple Silicon
     ] (system:
       let
         # Import Nixpkgs for the current system.
